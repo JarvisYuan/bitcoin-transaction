@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+/* GET data reset. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    router.orderList = [];
+    router.listLength = 0;
+    res.send('respond with a resource');
 });
 
 module.exports = router;

@@ -1,8 +1,86 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*
+* @Author: JarvisYuan
+* @Date:   2017-03-14 21:05:15
+* @Last Modified by:   zjykr
+* @Last Modified time: 2017-03-16 16:07:02
+*/
+
+[v-cloak] {
+    display: none;
 }
 
-a {
-  color: #00B7FF;
+html {
+    height: 100%;
+}
+body {
+    position: relative;
+    min-height: 100%;
+}
+header {
+    margin-bottom: 30px;
+    background-color: #FDB823;
+}
+header .container {
+    color: #FFF;
+    font-weight: bold;
+    font-style: italic;
+}
+header .btn {
+    width: 160px;
+    height: 40px;
+    margin: 20px 0;
+    line-height: 18px;
+}
+header .btn:focus {
+    border-color: #CCC;
+    outline: none;
+    background-color: #FFF;
+}
+#order-list tr {
+    transition: all 1s;
+}
+.orderlist-enter {
+    transform: translateX(-100px);
+    opacity: 0;
+}
+.orderlist-leave-active {
+    position: absolute;
+    top: 120px;
+    right: -80px;
+    opacity: 0;
+}
+#deal-list tr {
+    transition: transform 1s, opacity 1s;
+}
+.deallist-enter {
+    transform: translateX(-120px);
+    opacity: 0;
+}
+.deallist-leave-active {
+    /* 脱离文档流, 避免移出时影响页面高度 */
+    position: absolute;
+    transform: translateY(30px);
+    opacity: 0;
+}
+#deal-list tbody tr:hover {
+    cursor: pointer;
+    background-color: #F0F7E2;
+}
+#pop-content {
+    display: none;
+    padding: 28px 10px;
+}
+#pop-content tbody {
+    margin: 0 10px;
+}
+.layui-layer-title {
+    font-size: 18px;
+}
+footer {
+    position: absolute;
+    /* 强制窗口出现滚动条, 避免订单长度变化时左右抖动 */
+    bottom: -30px;
+    width: 100%;
+    height: 30px;
+    background-color: #FFF1D3;
 }

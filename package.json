@@ -1,17 +1,30 @@
 {
-  "name": "bitcoin-transaction",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "~1.16.0",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.0",
-    "ejs": "~2.5.5",
-    "express": "~4.14.1",
-    "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.2"
-  }
+	"name": "bitcoin-transaction",
+	"version": "1.0.0",
+	"description": "a simple front-end bitcoin trading system",
+	"main": "app.js",
+	"author": "JarvisYuan",
+	"license": "MIT",
+	"scripts": {
+		"start": "node ./bin/www",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"body-parser": "~1.16.0",
+		"cookie-parser": "~1.4.3",
+		"debug": "~2.6.0",
+		"ejs": "~2.5.5",
+		"express": "~4.14.1",
+		"morgan": "~1.7.0",
+		"serve-favicon": "~2.3.2"
+	},
+	"devDependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/JarvisYuan/bitcoin-transaction.git"
+	},
+	"bugs": {
+		"url": "https://github.com/JarvisYuan/bitcoin-transaction/issues"
+	},
+	"homepage": "https://github.com/JarvisYuan/bitcoin-transaction#readme"
 }

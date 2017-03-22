@@ -1,11 +1,119 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container clearfix">
+            <h1 class="pull-left">Bitcoin</h1>
+            <button type="button" class="btn btn-default btn-lg pull-right">Reset</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <table id="order-list" class="table table-striped table-hover" v-cloak>
+                    <h1>Latest Orders</h1>
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th class="text-center">Side</th>
+                            <th class="text-right">Quantity</th>
+                            <th class="text-right">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody name="orderlist" is="transition-group">
+                        <tr v-for="order in orders" :key="order.number">
+                            <td>{{ order.number }}</td>
+                            <td class="text-center">{{ order.side }}</td>
+                            <td class="text-right">{{ order.quantity }} BTC</td>
+                            <td class="text-right">{{ order.price }} CNY</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <table id="deal-list" class="table table-striped table-hover" v-cloak>
+                    <h1>Latest Transactions</h1>
+                    <thead>
+                        <tr>
+                            <th>Hash</th>
+                            <th class="text-right">Value Out</th>
+                        </tr>
+                    </thead>
+                    <tbody name="deallist" is="transition-group">
+                        <tr v-for="deal in deals" :key="deal.number" @click="popUp(deal)">
+                            <td><a>{{ deal.hash.slice(0, 42) }}...</a></td>
+                            <td class="text-right">{{ deal.quantity }} BTC</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="pop-content">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>hash:</th>
+                    <td colspan="3">{{ info.hash }}</td>
+                </tr>
+                <tr>
+                    <th>Time:</th>
+                    <td colspan="3">{{ info.time }}</td>
+                </tr>
+                <tr>
+                    <th>Quantity:</th>
+                    <td>{{ info.quantity }} BTC</td>
+                    <th class="text-right">Price:</th>
+                    <td>{{ info.price }} CNY</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Side</th>
+                    <th>Number</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ info.askOrder.side }}</td>
+                    <td>{{ info.askOrder.number }}</td>
+                    <td>{{ info.askOrder.quantity }} BTC</td>
+                    <td>{{ info.askOrder.price }} CNY</td>
+                </tr>
+                <tr>
+                    <td>{{ info.bidOrder.side }}</td>
+                    <td>{{ info.bidOrder.number }}</td>
+                    <td>{{ info.bidOrder.quantity }} BTC</td>
+                    <td>{{ info.bidOrder.price }} CNY</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer></footer>
+
+
+    <script src="javascripts/jquery.min.js"></script>
+    <script src="javascripts/layer.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="javascripts/vue.min.js"></script>
+    <script src="javascripts/sha256.js"></script>
+    <script src="javascripts/orders.js"></script>
+
+</body>
 </html>
