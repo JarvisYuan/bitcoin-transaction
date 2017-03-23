@@ -1,10 +1,11 @@
 var express = require('express');
+var orders = require('./list.js').orders;
 var router = express.Router();
 
 /* GET data reset. */
 router.get('/', function(req, res, next) {
-    router.orderList = [];
-    router.listLength = 0;
+    orders.list = [];
+    orders.length = 0;
     res.send('respond with a resource');
 });
 
