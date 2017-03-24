@@ -5,10 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/bitcoin-transaction');
-
 var index = require('./routes/index');
 var reset = require('./routes/reset');
 var list = require('./routes/list');
@@ -26,9 +22,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-//连接数据库到路由件
-app.use(function(req, res, next) {req.db = db; next();});
 
 app.use('/', index);
 app.use('/list', list);
