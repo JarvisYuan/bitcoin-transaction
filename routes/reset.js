@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
     orders.currNum = 0;
     orders.remove({});
     res.end();
-    // res.send('respond with a resource');
 });
 
 module.exports = router;
