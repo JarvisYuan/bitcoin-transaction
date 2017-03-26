@@ -1,27 +1,38 @@
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/bitcoin-transaction');
-var orders = db.get('orders');
+var mongoose = require('mongoose');
 
-orders.currNum = 0;
+mongoose.connect('mongodb://localhost/bitcoin');
+mongoose.connection.on('error', console.error.bind(console, 'connection error: '));
+
+var OrderSchema = new mongoose.Schema({
+    number: Number,
+    side: String,
+    quantity: Number,
+    price: Number
+});
+
+var OrderModel = mongoose.model('Orders', OrderSchema);
+
+OrderModel.currNum = 0;
 
 (function createOrder() {
-    var newOrder = {},
+    var OrderEntity = new OrderModel({}),
         interval = Math.floor(Math.random()*2000);
 
     if (Math.random() > 0.5) {
-        newOrder.side = "ask";
+        OrderEntity.side = "ask";
     } else {
-        newOrder.side = "bid";
+        OrderEntity.side = "bid";
     }
 
-    newOrder.number = orders.currNum++;
-    newOrder.quantity = Math.floor(Math.random()*20 + 1);
-    newOrder.price = Math.floor(Math.random()*120 + 80);
+    OrderEntity.number = OrderModel.currNum++;
+    OrderEntity.quantity = Math.floor(Math.random()*20 + 1);
+    OrderEntity.price = Math.floor(Math.random()*120 + 80);
 
-    orders.insert(newOrder);
+    OrderEntity.save(function(err, doc) {
+        if (err) console.log(err);
+    });
 
     setTimeout(arguments.callee, interval);
 })();
 
-module.exports = orders;
+module.exports = OrderModel;

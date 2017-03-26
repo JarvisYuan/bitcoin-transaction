@@ -5,7 +5,9 @@ var router = express.Router();
 /* GET data reset. */
 router.get('/', function(req, res, next) {
     orders.currNum = 0;
-    orders.remove({});
+    orders.remove({}, function(err, doc){
+        if(err) console.log(err);
+    });
     res.end();
 });
 
